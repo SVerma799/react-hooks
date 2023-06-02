@@ -1,24 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import { createContext, useState } from "react";
+import "./App.css";
+import ChildComponet from "./components/ChildComponet";
+import Reference from "./components/Reference";
+
+export const LoginContext = createContext();
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState("first");
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <LoginContext.Provider value={[loggedIn, setLoggedIn]}>
+      <div className="App">
+        <ChildComponet />
+        <Reference />
+      </div>
+    </LoginContext.Provider>
   );
 }
 
